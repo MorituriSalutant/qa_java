@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -15,6 +16,7 @@ public class CatTest {
 
     @Mock
     Feline feline;
+
     Cat cat;
 
     @Before
@@ -23,17 +25,21 @@ public class CatTest {
     }
 
     @Test
-    public void getSoundTest() {
+    public void whenCallGetSoundThenReturnString() {
         String expect = "Мяу";
+
         String actual = cat.getSound();
+
         assertEquals(expect, actual);
     }
 
     @Test
-    public void getFoodTest() throws Exception {
+    public void whenCallGetFoodThenReturnList() throws Exception {
         Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expect = Arrays.asList("Животные", "Птицы", "Рыба");
+
         List<String> actual = cat.getFood();
+
         assertEquals(expect, actual);
     }
 }
