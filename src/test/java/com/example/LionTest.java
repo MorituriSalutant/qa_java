@@ -16,11 +16,8 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class LionTest {
-
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
 
     @Mock
     private static Feline feline;
@@ -28,8 +25,8 @@ public class LionTest {
     Lion lion;
 
     @Test
-    public void getKittens() throws Exception {
-        lion = new Lion(feline,"Самец");
+    public void getKittens(){
+        lion = new Lion(feline);
         Mockito.when(feline.getKittens()).thenReturn(1);
         int expect = 1;
 
@@ -40,7 +37,7 @@ public class LionTest {
 
     @Test
     public void doesHaveManeOne() throws Exception {
-        lion = new Lion(feline,"Самец");
+        lion = new Lion("Самец");
         boolean expect = true;
 
         boolean actual = lion.hasMane;
@@ -50,7 +47,7 @@ public class LionTest {
 
     @Test
     public void doesHaveManeTwo() throws Exception {
-        lion = new Lion(feline,"Самка");
+        lion = new Lion("Самка");
         boolean expect = false;
 
         boolean actual = lion.hasMane;
@@ -65,7 +62,7 @@ public class LionTest {
         String actual = null;
 
         try {
-            lion = new Lion(feline,"Табуретка");
+            lion = new Lion("Табуретка");
         } catch (Exception ex) {
             exception = ex;
             actual = exception.getMessage();
@@ -77,7 +74,7 @@ public class LionTest {
 
     @Test
     public void getFood() throws Exception {
-        lion = new Lion(feline,"Самец");
+        lion = new Lion(feline);
         Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expect = Arrays.asList("Животные", "Птицы", "Рыба");
 
