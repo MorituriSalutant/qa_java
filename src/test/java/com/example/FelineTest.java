@@ -16,7 +16,7 @@ public class FelineTest {
     Feline feline = new Feline();
 
     @Test
-    public void whenCallEatMeaThenCallFood() throws Exception {
+    public void whenCallEatMeaThenReturnList() throws Exception {
         Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expect = Arrays.asList("Животные", "Птицы", "Рыба");
 

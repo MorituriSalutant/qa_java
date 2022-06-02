@@ -27,7 +27,7 @@ public class LionTest {
     }
 
     @Test
-    public void getKittens() {
+    public void whenCallGetKittensThenReturnOne() {
         Mockito.when(feline.getKittens()).thenReturn(1);
         int expect = 1;
 
@@ -37,7 +37,7 @@ public class LionTest {
     }
 
     @Test
-    public void doesHaveManeThree() {
+    public void whenCreateClassLionThenReturnException() {
         Exception exception = null;
         String expect = "Используйте допустимые значения пола животного - самец или самка";
         String actual = null;
@@ -54,7 +54,7 @@ public class LionTest {
     }
 
     @Test
-    public void getFood() throws Exception {
+    public void whenCallGetFoodThenReturnList() throws Exception {
         Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expect = Arrays.asList("Животные", "Птицы", "Рыба");
 
