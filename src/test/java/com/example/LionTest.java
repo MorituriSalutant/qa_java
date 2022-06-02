@@ -1,5 +1,6 @@
 package com.example;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,19 +40,14 @@ public class LionTest {
 
     @Test
     public void whenCreateClassLionThenReturnException() {
-        Exception exception = null;
         String expect = "Используйте допустимые значения пола животного - самец или самка";
-        String actual = null;
 
         try {
             lion = new Lion(feline,"Табуретка");
+            Assert.fail("Expect Exception");
         } catch (Exception ex) {
-            exception = ex;
-            actual = exception.getMessage();
+            assertEquals(expect, ex.getMessage());
         }
-
-        assertNotNull(exception);
-        assertEquals(expect, actual);
     }
 
     @Test
