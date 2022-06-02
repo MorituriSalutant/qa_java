@@ -1,20 +1,17 @@
 package com.example;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.MockitoRule;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
@@ -24,9 +21,13 @@ public class LionTest {
 
     Lion lion;
 
-    @Test
-    public void getKittens(){
+    @Before
+    public void setUp() {
         lion = new Lion(feline);
+    }
+
+    @Test
+    public void getKittens() {
         Mockito.when(feline.getKittens()).thenReturn(1);
         int expect = 1;
 
@@ -40,7 +41,7 @@ public class LionTest {
         lion = new Lion("Самец");
         boolean expect = true;
 
-        boolean actual = lion.hasMane;
+        boolean actual = lion.doesHaveMane();
 
         assertEquals(expect, actual);
     }
@@ -50,13 +51,13 @@ public class LionTest {
         lion = new Lion("Самка");
         boolean expect = false;
 
-        boolean actual = lion.hasMane;
+        boolean actual = lion.doesHaveMane();
 
         assertEquals(expect, actual);
     }
 
     @Test
-    public void doesHaveManeThree(){
+    public void doesHaveManeThree() {
         Exception exception = null;
         String expect = "Используйте допустимые значения пола животного - самец или самка";
         String actual = null;
@@ -69,12 +70,11 @@ public class LionTest {
         }
 
         assertNotNull(exception);
-        assertEquals(expect,actual);
+        assertEquals(expect, actual);
     }
 
     @Test
     public void getFood() throws Exception {
-        lion = new Lion(feline);
         Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expect = Arrays.asList("Животные", "Птицы", "Рыба");
 
