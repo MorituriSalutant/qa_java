@@ -22,8 +22,9 @@ public class LionTest {
     Lion lion;
 
     @Before
-    public void setUp() {
-        lion = new Lion(feline);
+    public void setUp() throws Exception {
+        String gender = "Самец";
+        lion = new Lion(feline, gender);
     }
 
     @Test
@@ -43,7 +44,7 @@ public class LionTest {
         String actual = null;
 
         try {
-            lion = new Lion("Табуретка");
+            lion = new Lion(feline,"Табуретка");
         } catch (Exception ex) {
             exception = ex;
             actual = exception.getMessage();

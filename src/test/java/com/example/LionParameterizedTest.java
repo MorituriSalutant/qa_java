@@ -7,10 +7,12 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class LionParameterizedTest {
+    private final Feline feline;
     private final String genderText;
     private final boolean expectHaveMane;
 
-    public LionParameterizedTest(String genderText, boolean expectHaveMane) {
+    public LionParameterizedTest(Feline feline, String genderText, boolean expectHaveMane) {
+        this.feline = feline;
         this.genderText = genderText;
         this.expectHaveMane = expectHaveMane;
     }
@@ -18,14 +20,14 @@ public class LionParameterizedTest {
     @Parameterized.Parameters
     public static Object[][] getTextData() {
         return new Object[][]{
-                {"Самец", true},
-                {"Самка", false}
+                {new Feline(), "Самец", true},
+                {new Feline(), "Самка", false}
         };
     }
 
     @Test
     public void whenCreateLionClassThenChangeMane() throws Exception {
-        Lion lion = new Lion(genderText);
+        Lion lion = new Lion(feline, genderText);
 
         boolean actual = lion.doesHaveMane();
 
