@@ -37,26 +37,6 @@ public class LionTest {
     }
 
     @Test
-    public void doesHaveManeOne() throws Exception {
-        lion = new Lion("Самец");
-        boolean expect = true;
-
-        boolean actual = lion.doesHaveMane();
-
-        assertEquals(expect, actual);
-    }
-
-    @Test
-    public void doesHaveManeTwo() throws Exception {
-        lion = new Lion("Самка");
-        boolean expect = false;
-
-        boolean actual = lion.doesHaveMane();
-
-        assertEquals(expect, actual);
-    }
-
-    @Test
     public void doesHaveManeThree() {
         Exception exception = null;
         String expect = "Используйте допустимые значения пола животного - самец или самка";
